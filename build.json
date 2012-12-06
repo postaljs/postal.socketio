@@ -1,0 +1,17 @@
+{
+    "anvil.uglify" : {
+        "all": true
+    },
+	"anvil.http" : {
+		"paths" : {
+			"/"             : "./"
+		}
+	},
+    "output": {
+        "full": "lib",
+        "partial": {
+            "/*" : [ "./example/client/js", "./example" ]
+        }
+    },
+	"dependencies" : [ "anvil.http", "anvil.uglify" ]
+}

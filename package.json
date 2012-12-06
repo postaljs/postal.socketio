@@ -1,0 +1,48 @@
+{
+    "name" : "postal.socketio",
+    "description" : "postal.js/postal.federation plugin for federating instances of postal.js across socket.io (http://socket.io/).",
+    "version" : "0.0.0",
+    "homepage" : "http://github.com/ifandelse/postal.socketio",
+    "repository" : {
+        "type" : "git",
+        "url" : "git://github.com/ifandelse/postal.socketio.git"
+    },
+	"author" : "Jim Cowart (http://freshbrewedcode.com/jimcowart)",
+    "contributors": [
+        {
+            "name" : "Jim Cowart",
+            "email" : "jim@ifandelse.com",
+            "url" : "http://freshbrewedcode.com/jimcowart"
+        }
+    ],
+	"keywords" : [
+		""
+	],
+    "bugs" : {
+        "email" : "jim@ifandelse.com",
+        "url" : "http://github.com/ifandelse/postal.socketio/issues"
+   },
+	"directories" : { "lib" : "lib" },
+    "main" : "lib/postal.socketio.js",
+	"engines" : {
+		"node" : ">=0.4.0"
+	},
+	"dependencies" : {
+		"underscore"        : ">=1.1.7",
+		"postal"            : ">=0.7.3",
+		"postal.federation" : ">=0.1.0",
+        "socket.io"         : ">=0.9.11"
+	},
+	"bundleDependencies" : [ "underscore" ],
+	"devDependencies" : {},
+    "licenses" : [
+        {
+            "type" : "MIT",
+            "url" : "http://opensource.org/licenses/MIT"
+        },
+        {
+            "type" : "GPL",
+            "url" : "http://opensource.org/licenses/GPL-2.0"
+        }
+    ]
+}
