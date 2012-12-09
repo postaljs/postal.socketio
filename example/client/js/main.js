@@ -6,4 +6,4 @@ postal.addWireTap(function(d, e) {
 
 window.__socket = io.connect(window.location.origin);
 
-postal.fedx.transports.socketio.signalReady();
+postal.fedx.signalReady();

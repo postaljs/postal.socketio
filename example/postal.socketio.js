@@ -2,7 +2,7 @@
  postal.socketio
  Copyright (C) 2012 - Jim Cowart (http://freshbrewedcode.com/jimcowart)
  License: Dual licensed MIT & GPL v2.0
- Version 0.1.0
+ Version 0.0.0
  */
 (function ( root, factory ) {
   if ( typeof module === "object" && module.exports ) {
@@ -23,33 +23,17 @@
 
   var SOCKET_IO = 'socketio';
   var _defaults = {
-    autoReciprocate : true,
-    enabled         : true
+    enabled : true
   };
   var _config = _defaults;
   
-  var SocketClient = function(socket, instanceId, autoReciprocate) {
+  var SocketClient = function( socket, instanceId ) {
     this.socket = socket;
     this.instanceId = instanceId;
-    this.autoReciprocate = autoReciprocate;
   };
   
   SocketClient.prototype.send = function(env) {
-    this.socket.emit("postal", postal.fedx.transports[SOCKET_IO].getWrapper('message', env));
-  };
-  
-  SocketClient.prototype.reciprocate = function() {
-    this.socket.emit("postal", postal.fedx.transports[SOCKET_IO].getWrapper('ready'));
-  };
-  
-  // TODO: -
-  SocketClient.prototype.attachToClient = function(client) {
-    if(!client[SOCKET_IO]) {
-      client[SOCKET_IO] = this;
-      if(this.autoReciprocate) {
-        this.reciprocate();
-      }
-    }
+    plugin.send(this.socket, env);
   };
   
   var plugin = postal.fedx.transports[SOCKET_IO] = {
@@ -61,6 +45,10 @@
         _config = _.defaults(cfg, _defaults);
       }
       return _config;
+    },
+  
+    getClientInstance: function( data ) {
+      return new SocketClient( data.source, data.packingSlip.instanceId );
     },
   
     getTargets: function() {
@@ -102,33 +90,13 @@
       }, this);
     },
   
-    getWrapper: function(type, envelope) {
-      switch(type) {
-        case 'ready' :
-          return {
-            postal     : true,
-            type       : "federation." + type,
-            instanceId : postal.instanceId
-          };
-          break;
-        default:
-          return {
-            postal     : true,
-            type       : "federation." + type,
-            instanceId : postal.instanceId,
-            envelope   : envelope
-          };
-          break;
-      }
-    },
-  
     onMessage: function(socket, data) {
       if(this.shouldProcess(data)) {
-        if(data.type === "federation.ready") {
-          postal.fedx.addClient(new SocketClient(socket, data.instanceId, _config.autoReciprocate), SOCKET_IO);
-        } else if(data.type === "federation.message") {
-          postal.fedx.onFederatedMsg( data.envelope, data.instanceId );
-        }
+        postal.fedx.onFederatedMsg({
+          transport   : SOCKET_IO,
+          packingSlip : data,
+          source      : socket
+        });
       }
     },
   
@@ -139,18 +107,13 @@
       }
     },
   
-    shouldProcess: function(event) {
-      return _config.enabled && event.postal;
+    send: function(socket, msg) {
+      socket.emit( "postal",  msg );
     },
   
-    signalReady: function(socket) {
-      var _targets = !socket ? this.getTargets() : (_.isArray(socket) ? socket : [socket]);
-      this.updateListeners(_targets);
-      _.each(_targets, function(target) {
-        target.emit("postal", this.getWrapper("ready"));
-      }, this);
+    shouldProcess: function(event) {
+      return _config.enabled;
     }
-  
   };
   
   if(io.sockets && typeof io.sockets.on === 'function') {
@@ -158,7 +121,6 @@
       plugin.updateListeners([socket]);
     });
   }
-  
 
   return postal;
 
