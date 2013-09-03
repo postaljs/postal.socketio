@@ -5,9 +5,9 @@ var express = require( 'express' ),
 	machina    = require( 'machina' )(),
 	underscore = require( 'underscore' ),
 	riveter    = require( 'riveter' )( underscore ),
-	postalCore = require( 'postal.js' )( underscore ),
+	postalCore = require( 'postal' )( underscore ),
 	postalFedx = require( 'postal.federation' )( underscore, postalCore, riveter ),
-	postal     = require( 'postal.socketio.js' )( underscore, io, postalFedx, machina, riveter );
+	postal     = require( 'postal.socketio' )( underscore, io, postalFedx, machina, riveter );
 
 postal.instanceId("node-server-789");
 
