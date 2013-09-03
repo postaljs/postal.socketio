@@ -23,6 +23,11 @@
         "url" : "http://github.com/postaljs/postal.socketio/issues"
     },
     "main" : "index.js",
+	"scripts" : {
+		"start"    : "node index.js",
+		"debug"    : "node --debug index.js",
+		"debugbrk" : "node --debug-brk index.js"
+	},
 	"engines" : {
 		"node" : ">=0.10.13"
 	},
