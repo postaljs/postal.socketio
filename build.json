@@ -10,7 +10,7 @@
     "output": {
         "full": "lib",
         "partial": {
-            "/*" : [ "./example/client/js", "./example" ]
+            "/*" : [ "./example/client/js", "./example/node_modules" ]
         }
     },
 	"dependencies" : [ "anvil.http", "anvil.uglify" ]
