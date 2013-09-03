@@ -77,15 +77,20 @@ var SocketIoClient = machina.Fsm.extend({
 	},
 
 	decommission : function() {
-		this.target.removeAllListeners();
-		this.off();
-		this.target = undefined;
-		plugin.remotes = _.without( plugin.remotes, this );
-		return this.messageBundle;
+		if(!this.decommissioned) {
+			this.target.removeAllListeners();
+			this.off();
+			this.target = undefined;
+			plugin.remotes = _.without( plugin.remotes, this );
+			this.decommissioned = true;
+			return this.messageBundle;
+		}
 	},
 
 	onMessage : function( packingSlip ) {
-		this.handle( "onMessage", packingSlip );
+		if( packingSlip ) {
+			this.handle( "onMessage", packingSlip );
+		}
 	},
 
 	send : function( packingSlip ) {
@@ -105,7 +110,7 @@ var SocketIoClient = machina.Fsm.extend({
 		if(remote) {
 			if(_config.migrate) {
 				_nextLoop(function() {
-					self.send( remote.decommission() );
+					self.send( remote.decommission.call(remote) );
 				});
 			}
 		}

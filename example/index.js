@@ -16,7 +16,9 @@ app.use( express.static( __dirname + '/client' ) );
 server.listen( 3081 );
 
 postal.addWireTap( function ( d, e ) {
-	console.log( "ID: " + postal.instanceId() + " " + JSON.stringify( e, null, 4 ) );
+	if( e.topic !== "hai.client" ) {
+		console.log( e );
+	}
 });
 
 postal.fedx.addFilter([
@@ -36,3 +38,7 @@ module.exports = {
 	io      : io,
 	postal  : postal
 };
+
+setInterval(function() {
+	postal.publish({ channel: "ctrl", topic: "hai.client", data: "On yer serverz, settin yer timeoutz..." });
+}, 3000 );
