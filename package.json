@@ -1,7 +1,7 @@
 {
     "name" : "postal.socketio",
     "description" : "postal.js/postal.federation plugin for federating instances of postal.js across socket.io (http://socket.io/).",
-    "version" : "0.0.0",
+    "version" : "0.1.0",
     "homepage" : "http://github.com/ifandelse/postal.socketio",
     "repository" : {
         "type" : "git",
@@ -29,9 +29,10 @@
 	},
 	"dependencies" : {
 		"underscore"        : ">=1.1.7",
-		"postal"            : ">=0.7.3",
-		"postal.federation" : ">=0.1.0",
-        "socket.io"         : ">=0.9.11"
+		"postal"            : ">=0.8.4",
+		"postal.federation" : ">=0.2.3",
+        "socket.io"         : ">=0.9.11",
+		"machina"           : ">=0.3.4"
 	},
 	"bundleDependencies" : [ "underscore" ],
 	"devDependencies" : {},

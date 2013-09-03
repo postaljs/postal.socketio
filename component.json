@@ -1,10 +1,11 @@
 {
 	"name"    : "postal.socketio",
-	"version" : "0.0.0",
+	"version" : "0.1.0",
 	"main"    : ["lib/postal.socketio.js"],
 	"dependencies": {
 		"underscore"        : "~1.1.7",
-		"postal.js"         : "~0.7.3",
-        "postal.federation" : "~0.0.0"
+		"postal.js"         : "~0.8.4",
+        "postal.federation" : "~0.2.3",
+		"machina"           : "~0.3.4"
 	}
 }
