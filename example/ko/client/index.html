@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base href="/">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>postal.socketio KO playground</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="js/underscore.js"></script>
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="js/knockout-2.3.0.js"></script>
+    <script type="text/javascript" src="js/riveter.js"></script>
+    <script type="text/javascript" src="js/machina.js"></script>
+    <script type="text/javascript" src="js/postal.js"></script>
+    <script type="text/javascript" src="js/postal.federation.js"></script>
+    <script type="text/javascript" src="js/postal.socketio.js"></script>
+    <script type="text/javascript" src="js/postal.diagnostics.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+</head>
+<body>
+    <div id="contact">
+        <div id="edit" data-bind="visible: isEditing">
+            <form class="" role="form">
+                <div class="form-group">
+                    <label for="firstName" class="">First Name:</label>
+                    <input type="text" id="firstName" class="form-control" data-bind="value: firstName" />
+                </div>
+                <div class="form-group">
+                    <label for="lastName" class="">Last Name:</label>
+                    <input type="text" id="lastName" class="form-control" data-bind="value: lastName" />
+                </div>
+                <div class="form-group">
+                    <label for="city" class="">City:</label>
+                    <input type="text" id="city" class="form-control" data-bind="value: city" />
+                </div>
+                <div class="form-group">
+                    <label for="state" class="">State:</label>
+                    <input type="text" id="state" class="form-control" data-bind="value: state" />
+                </div>
+                <div class="form-group">
+                    <input type="button" value="Stop Editing" data-bind="click: toggleEdit" />
+                </div>
+            </form>
+        </div>
+        <div id="view" class="well" data-bind="visible: isNotEditing">
+            <div class="well">
+                <div data-bind="text: fullName">{Unknown}</div>
+                <div> lives in </div>
+                <div data-bind="text: location">{Unknown}</div>
+            </div>
+            <input type="button" value="Edit" data-bind="click: toggleEdit" />
+        </div>
+    </div>
+</body>
+</html>

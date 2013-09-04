@@ -1,0 +1,11 @@
+body {
+    padding: 1em;
+}
+
+input[type="text"] {
+    width: 15em;
+}
+
+#view {
+    text-align: center;
+}

@@ -4,13 +4,13 @@
     },
 	"anvil.http" : {
 		"paths" : {
-			"/"             : "./"
+			"/" : "./"
 		}
 	},
     "output": {
         "full": "lib",
         "partial": {
-            "/*" : [ "./example/client/js", "./example/node_modules" ]
+            "/*" : [ "./example/basic/client/js", "./example/basic/node_modules", "./example/ko/client/js", "./example/ko/node_modules" ]
         }
     },
 	"dependencies" : [ "anvil.http", "anvil.uglify" ]
