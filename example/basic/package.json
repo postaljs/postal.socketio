@@ -1,0 +1,54 @@
+{
+    "name" : "postal.socketio.example",
+    "description" : "example usage of postal.socketio for federating postal between node and client(s).",
+    "version" : "0.1.0",
+    "homepage" : "https://github.com/postaljs/postal.socketio/tree/master/example",
+    "repository" : {
+        "type" : "git",
+        "url" : "git://github.com/postaljs/postal.socketio.git"
+    },
+	"author" : "Jim Cowart (http://freshbrewedcode.com/jimcowart)",
+    "contributors": [
+        {
+            "name" : "Jim Cowart",
+            "email" : "jim@ifandelse.com",
+            "url" : "http://freshbrewedcode.com/jimcowart"
+        }
+    ],
+	"keywords" : [
+		""
+	],
+    "bugs" : {
+        "email" : "jim@ifandelse.com",
+        "url" : "http://github.com/postaljs/postal.socketio/issues"
+    },
+    "main" : "index.js",
+	"scripts" : {
+		"start"    : "node index.js",
+		"debug"    : "node --debug index.js",
+		"debugbrk" : "node --debug-brk index.js"
+	},
+	"engines" : {
+		"node" : ">=0.10.13"
+	},
+	"dependencies" : {
+		"underscore"        : ">=1.4.4",
+		"postal"            : ">=0.8.4",
+		"postal.federation" : ">=0.2.3",
+		"postal.socketio"   : ">=0.1.0",
+        "socket.io"         : ">=0.9.11",
+		"machina"           : ">=0.3.4",
+		"riveter"           : ">=0.1.1",
+		"express"           : ">=3.3.8"
+	},
+    "licenses" : [
+        {
+            "type" : "MIT",
+            "url" : "http://opensource.org/licenses/MIT"
+        },
+        {
+            "type" : "GPL",
+            "url" : "http://opensource.org/licenses/GPL-2.0"
+        }
+    ]
+}
